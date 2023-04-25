@@ -27,7 +27,7 @@ function show(cards){
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Rocket name: ${rocket.rocket_name}</li>
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Flight number: ${flight_number}</li>
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Launch Year: ${launch_year}</li>
-        <button class="btn btn-primary btnDetail" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" vid="${links.video_id}" title="${mission_name}" year="${launch_year}" id="${rocket.rocket_id}" type="${rocket.rocket_type} launch=${rocket.first_stage.cores.landing_intent}">More about this...</button>
+        <button class="btn btn-primary btnDetail" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" vid="${links.youtube_id}" title="${mission_name}" year="${launch_year}" id="${rocket.rocket_id}" type="${rocket.rocket_type} launch=${rocket.first_stage.cores.landing_intent}">More about this...</button>
      </ul>
     </div>`
     })
