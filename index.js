@@ -15,7 +15,7 @@ function show(cards){
     let cont = document.querySelector("#cards")
     let plantilla= ""
     cards.forEach(card=>{
-        let {flight_number, mission_name,links,launch_year, rocket} = card
+        let {flight_number, mission_name,links,launch_year, rocket, launch_date_unix,launch_date_utc,launch_date_local, details} = card
         plantilla+=`
         <div class="card bg-dark" style="width: 28rem;">
         <div class="card-body bg-dark">
@@ -27,7 +27,10 @@ function show(cards){
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Rocket name: ${rocket.rocket_name}</li>
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Flight number: ${flight_number}</li>
             <li class="list-group-item bg-dark"style="border-color:transparent; color:white;">Launch Year: ${launch_year}</li>
-        <button class="btn btn-primary btnDetail" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" vid="${links.youtube_id}" title="${mission_name}" year="${launch_year}" id="${rocket.rocket_id}" type="${rocket.rocket_type} launch=${rocket.first_stage.cores.landing_intent}">More about this...</button>
+            <div class="d-flex justify-content-evenly">
+            <button class="btn btn-primary btnDetail" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" vid="${links.youtube_id}" title="${mission_name}" year="${launch_year}" idd="${rocket.rocket_id}" type="${rocket.rocket_type} launch=${rocket.first_stage.cores.landing_intent}">More about this...</button>
+            <button class="btn btn-primary btnDetail2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" titlee="${mission_name}" unix="${launch_date_unix}" utc="${launch_date_utc}" local="${launch_date_local}" article="${details}" yearr="${launch_year}" typee="${rocket.rocket_type}">Technical info...</button>
+        </div>
      </ul>
     </div>`
     })
@@ -44,7 +47,7 @@ function show(cards){
             let vid = e.target.getAttribute(`vid`);
             let title = e.target.getAttribute(`title`);
             let year = e.target.getAttribute(`year`)
-            let id = e.target.getAttribute(`id`)
+            let id = e.target.getAttribute(`idd`)
             let type = e.target.getAttribute(`type`)
             let launch = e.target.getAttribute(`launch`)
             htmlModal+=`
@@ -75,5 +78,65 @@ function show(cards){
           modalTitle.innerHTML = htmlTitle;
   
         }
+        
+
+
     })
+    cont.addEventListener(`click`,(e)=>{
+      let htmlTitle2="";
+      let htmlModal2="";
+      let htmlTable2="";
+      let modalTitle2 = document.querySelector(".modal-title2");
+      let modalBody2 = document.querySelector(".modal-body2");
+
+      let btnDetail2 = e.target.classList[2]
+      if(btnDetail2 == `btnDetail2`){
+         let titlee = e.target.getAttribute(`titlee`)
+          let unix = e.target.getAttribute(`unix`);
+          let utc = e.target.getAttribute(`utc`);
+          let local = e.target.getAttribute(`local`)
+          let article = e.target.getAttribute(`article`)
+          let yearr = e.target.getAttribute(`yearr`)
+          let typee = e.target.getAttribute(`typee`)
+          htmlModal2+=`
+                    <table class="default">
+                    <tr>
+                      <th scope="row">Mission name</th>
+                      <th>${titlee}</th>
+                    </tr>
+                    <tr>
+                    <th>Launch year</th>
+                    <td>${yearr}</td>
+                    </tr>
+                    <tr>
+                    <th>Rocket type</th>
+                    <td>${typee}</td>
+                    </tr>
+                    <tr>
+                      <th>Launch dateLaunch date (unix)</th>
+                      <td>${unix}</td>
+                    </tr>
+                    <tr>
+                      <th>Launch date (utc)</th>
+                      <td>${utc}</td>
+                    </tr>
+                    <tr>
+                      <th>Launch date (local)</th>
+                      <td>${local}</td>
+                    </tr>
+                    <tr>
+                      <th>Details</th>
+                      <td>${article}</td>
+                    </tr>
+                  </table>
+        `
+        htmlTitle2 += `${titlee}`
+        modalBody2.innerHTML = htmlModal2 + htmlTable2;
+        modalTitle2.innerHTML = htmlTitle2;
+
+      }
+      
+
+
+  })
 }
