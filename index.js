@@ -113,7 +113,7 @@ function show(cards){
                     <td>${typee}</td>
                     </tr>
                     <tr>
-                      <th>Launch dateLaunch date (unix)</th>
+                      <th>Launch date (unix)</th>
                       <td>${unix}</td>
                     </tr>
                     <tr>
